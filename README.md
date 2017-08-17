@@ -3,7 +3,9 @@ This is just another node.js example XO game
 
 Install
 --
-    yarn install 
+    yarn 
+or
+    npm install
 
 How to play
 --
