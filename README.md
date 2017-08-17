@@ -3,9 +3,10 @@ This is just another node.js example XO game
 
 Install
 --
-  yarn install 
+    yarn install 
 
 How to play
 --
-  yarn start 
+    yarn start 
+
 Have fun !
