@@ -17,13 +17,16 @@ function toggleOpponent() {
 }
 
 function showTable() {
-    console.log('------------')
+    console.log('-------------------')
+    console.log('====== board ====== ')
+    console.log('-------------------')
     console.log('   B1  B2  B3')
     console.log('A1 ' + _arr[0][0] + ' | ' + _arr[0][1] + ' | ' + _arr[0][2])
     console.log('  ---+---+---')
     console.log('A2 ' + _arr[1][0] + ' | ' + _arr[1][1] + ' | ' + _arr[1][2])
     console.log('  ---+---+---')
     console.log('A3 ' + _arr[2][0] + ' | ' + _arr[2][1] + ' | ' + _arr[2][2])
+    console.log('-------------------')
 }
 
 function checkMatchingInput(result) {
