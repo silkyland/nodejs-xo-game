@@ -163,8 +163,10 @@ function showScoreBoard() {
     console.log('-----------------------------------------')
     console.log('Table of best score             ')
     console.log('-----------------------------------------')
+
+    // Sort Score
     var sortScore = scoreBoard.sort(function (a, b) {
-        return parseInt(a.score) - parseInt(b.score)
+        return parseInt(b.score) - parseInt(a.score)
     })
     for (var loop = 0; loop < sortScore.length && loop <= 5; loop++) {
         console.log((loop + 1) + '. ' + sortScore[loop].name + ', Score: ' + sortScore[loop].score)
