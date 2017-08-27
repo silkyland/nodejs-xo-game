@@ -13,7 +13,8 @@ run()
 
 // var
 var _arr
-var _sumO = 0, _sumX = 0
+var _sumO = 0,
+    _sumX = 0
 var opponent
 var welcomeTextShow
 var _randomScore
@@ -70,7 +71,9 @@ function positionInput() {
     console.log('Now,  ' + symbol + ' turn :')
     prompt.start();
     prompt.get(['A', 'B'], function (err, result) {
-        if (err) { return onErr(err); }
+        if (err) {
+            return onErr(err);
+        }
         if (checkMatchingInput(result)) {
             if (_arr[result.A - 1][result.B - 1] == ' ') {
                 _arr[result.A - 1][result.B - 1] = symbol
@@ -89,7 +92,11 @@ function positionInput() {
             positionInput()
             return false
         }
-        if (!checkWin()) {
+        if (checkDraw()) {
+            console.log('Draw! No one win.')
+            //showScoreBoard()
+            playAgain()
+        } else if (!checkWin()) {
             showTable()
             toggleOpponent()
             positionInput()
@@ -104,11 +111,28 @@ function positionInput() {
 
         }
     });
+
     function onErr(err) {
         console.log(err);
         return 1;
     }
 }
+
+// Check draw
+function checkDraw() {
+    var sumAllData = 0;
+    for (var i = 0; i < _arr.length; i++) {
+        for (var j = 0; j < _arr[0].length; j++) {
+            sumAllData += checkEmpty(_arr[i][j]) ? 0 : 1
+        }
+    }
+    return sumAllData == 9 ? true : false
+}
+
+function checkEmpty(str) {
+    return !str || !/[^\s]+/.test(str);
+}
+
 
 // Check winner ?
 function checkWin() {
@@ -125,12 +149,17 @@ function checkWin() {
 
 // add score to board
 var scoreBoard = []
+
 function savePoint(point) {
     prompt.start();
     console.log('Please enter your name? ')
     prompt.get(['name'], function (err, result) {
         var id = scoreBoard.length + 1
-        scoreBoard.push({ id: id, name: result.name, score: point })
+        scoreBoard.push({
+            id: id,
+            name: result.name,
+            score: point
+        })
         showScoreBoard()
         playAgain()
     })
@@ -140,7 +169,7 @@ function savePoint(point) {
 // need to play it again ?
 function playAgain() {
     prompt.start();
-    console.log('Are you sure to play again? (Y/N)')
+    console.log('Do you need to try again? (Y/N)')
     prompt.get(['answer'], function (err, result) {
         if (result.answer == 'y' || result.answer == 'Y') {
             run()
@@ -204,4 +233,3 @@ function shuffle(array) {
 
     return array;
 }
-
